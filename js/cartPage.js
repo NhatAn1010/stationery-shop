@@ -5,7 +5,7 @@ function renderCart() {
     container.innerHTML = "";
 
     if (cart.length === 0) {
-        container.innerHTML = '<p id="cart" class="d-flex justify-content-center">Giỏ hàng trống!</p>';
+        container.innerHTML = '<h4 id="cart" class="d-flex justify-content-center">Giỏ hàng trống!</h4>';
         return;
     }
 
