@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+    <link rel="shortcut icon" href="../img/icon/icon_web.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        .checkout-container {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+        
+        .cart-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: green;
+        }
+        
+        #bank-info {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            text-align: center;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        
+        #bank-info img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+        
+        #bank-info p {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper" class="container">
+        <header class="position-sticky top-0 d-flex align-items-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-8 col-md-2 d-flex align-items-center header__left">
+                        <div class="header__left-logo d-flex justify-content-center align-items-center">
+                            <img class="w-75 h-100" src="../img/banner/logo.png">
+                            <div class="header__left-logo-title w-50">
+                                <h1 class="text-success fw-bold">STATIONERY</h1>
+                                <h1 class="d-flex justify-content-center text-danger">SHOP</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-md-7 d-flex justify-content-center align-items-center header__right">
+                        <div class="px-2 px-md-3">
+                            <a href="home.html"><i class="bi bi-house fs-1"></i></a>
+                        </div>
+                        <div class="px-2 px-md-3">
+                            <a href="cart.html"><i class="bi bi-cart fs-1"></i></a>
+                        </div>
+                        <div class="px-2 px-md-3">
+                            <a href="../index.html"><i class="bi bi-person-circle fs-1"></i></a>
+                        </div>
+                        <div class="menu px-2 px-md-3">
+                            <nav class="navbar p-0">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="category-list nav-link dropdown-toggle fs-4 d-none d-md-block" data-bs-toggle="dropdown" href="#">
+                                            Danh sách loại sản phẩm
+                                        </a>
+                                        <a class="d-md-none text-dark" data-bs-toggle="dropdown" href="#">
+                                            <i class="bi bi-list fs-1"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end position-absolute">
+                                            <li><a href="penshop.html" class="dropdown-item fs-4">Bút bi và bút máy</a></li>
+                                            <li><a href="bagshop.html" class="dropdown-item fs-4">Cặp dành cho học sinh</a></li>                       
+                                            <li><a href="officeshop.html" class="dropdown-item fs-4">Dụng cụ văn phòng</a></li>
+                                            <li><a href="gluetapeshop.html" class="dropdown-item fs-4">Hồ dán và băng keo</a></li>
+                                            <li><a href="notebooks.html" class="dropdown-item fs-4">Sổ và tài liệu</a></li>
+                                            <li><a href="art.html" class="dropdown-item fs-4">Mỹ thuật</a></li>
+                                        </ul>
+                                    </li>             
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <div class="d-flex w-100">
+                            <input type="text" name="search-product" id="search-product" class="form-control" placeholder="Tìm kiếm...">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="container checkout-container">
+            <h2 class="mb-4">🛒 Thanh toán</h2>
+
+            <div class="card mb-4 p-3 w-100">
+                <h5>Thông tin khách hàng</h5>
+                <form id="checkout-form">
+                    <div class="mb-3">
+                        <label>Tên:</label>
+                        <input type="text" class="form-control" id="customer-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Số điện thoại:</label>
+                        <input type="text" class="form-control" id="customer-phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Địa chỉ:</label>
+                        <input type="text" class="form-control" id="customer-address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email:</label>
+                        <input type="email" class="form-control" id="customer-email" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card mb-4 p-3 w-100" >
+                <h5>Đơn hàng của bạn</h5>
+                <div id="cart-items"></div>
+                <div class="mt-3 text-end total-price">Tổng: 0đ</div>
+            </div>
+
+            <div class="card mb-4 p-3 w-100">
+                <h5>Phương thức thanh toán</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment-method" id="cod" value="cod" checked>
+                    <label class="form-check-label" for="cod">Thanh toán khi nhận hàng</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment-method" id="bank" value="bank">
+                    <label class="form-check-label" for="bank">Chuyển khoản ngân hàng</label>
+                </div>
+
+                <div id="bank-info">
+                    <img src="../img/qr/qrdemo.jpg" alt="QR Bank">
+                    <p><strong>Ngân hàng:</strong> BIDV</p>
+                    <p><strong>Chủ tài khoản:</strong> Nguyễn Văn Tèo</p>
+                    <p><strong>Số tài khoản:</strong> 1251 0000 5863 28</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center w-100">
+                <button class="btn btn-success btn-lg w-100" id="place-order">Đặt hàng</button>
+            </div>
+            <p id="help-text"></p>
+        </div>
+
+        <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+            <div class="container text-center text-md-start">
+                <div class="row text-center text-md-start">
+                    
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">G5 STATIONERY</h5>
+                        <p>Địa chỉ tin cậy cho học sinh, sinh viên sắm sửa phụ kiện và đồ dùng học tập trend nhất.</p>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">Chính sách</h5>
+                        <p><a href="#" class="text-white text-decoration-none">Giao hàng</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Đổi trả 7 ngày</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Bảo mật</a></p>
+                    </div>
+
+                    <div class="col-md-3 col-lg-2 col-xl-2 mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">Liên kết</h5>
+                        <p><a href="#" class="text-white text-decoration-none">Trang chủ</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Sản phẩm</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Giỏ hàng</a></p>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">Liên hệ</h5>
+                        <p><i class="fas fa-home mr-3"></i> Nguyễn Văn Bảo, Gò Vấp, TP. Hồ Chí Minh</p>
+                        <p><i class="fas fa-envelope mr-3"></i> student.iuh.edu@gmail.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> 0908441812</p>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <div class="row align-items-center">
+                    <div class="col-md-7 col-lg-8">
+                        <p>Copyright © 2026 All rights reserved by:
+                            <a href="#" class="text-warning text-decoration-none"><strong>G5 Group</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="../js/cart.js"></script>
+        <script>
+            window.onload = () => {
+                window.scrollTo(0,0);
+            }
+            
+            const cart = getCart();
+            function renderCheckoutCart() {
+                const container = document.getElementById("cart-items");
+                container.innerHTML = "";
+
+                let total = 0;
+                if (cart.length === 0) {
+                    container.innerHTML = "<p>Giỏ hàng trống!</p>";
+                    return;
+                }
+
+                cart.forEach(item => {
+                    const row = document.createElement("div");
+                    row.classList.add("d-flex", "align-items-center", "mb-2");
+                    row.innerHTML = `
+                        <img src="${item.image}" class="cart-img me-3">
+                        <div class="flex-grow-1">
+                            <h4>${item.name}</h4>
+                            <h5 class="text-success">Số lượng: ${item.quantity}</h5>
+                            <h6 class="text-danger">Giá: ${item.price.toLocaleString('vi-VN')}đ</h6>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                    total += item.quantity * item.price;
+                });
+
+                document.querySelector(".total-price").innerText = `Tổng: ${total.toLocaleString('vi-VN')}đ`;
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                renderCheckoutCart();
+
+                const bankRadio = document.getElementById("bank");
+                const codRadio = document.getElementById("cod");
+                const bankInfo = document.getElementById("bank-info");
+
+                bankRadio.addEventListener("change", () => {
+                    if (bankRadio.checked) bankInfo.style.display = "block";
+                });
+                codRadio.addEventListener("change", () => {
+                    if (codRadio.checked) bankInfo.style.display = "none";
+                });      
+
+                document.getElementById("place-order").addEventListener("click", () => {
+                    const name = document.getElementById("customer-name").value.trim();
+                    const phone = document.getElementById("customer-phone").value.trim();
+                    const address = document.getElementById("customer-address").value.trim();
+                    const email = document.getElementById("customer-email").value.trim();
+
+                    if (!name || !phone || !address || !email) {
+                        document.getElementById('help-text').innerText = "Vui lòng nhập đầy đủ thông tin!";
+                        document.getElementById('help-text').classList.add('text-danger');
+                        return;
+                    }
+                    else
+                    {
+                        document.getElementById('help-text').innerText = 'Đã đặt hàng thành công';
+                        
+                        setTimeout(() => {
+                            document.getElementById('help-text').innerText = '';
+                        }, 700);
+                        document.getElementById('help-text').classList.remove('text-danger');
+                        document.getElementById('help-text').classList.add('text-success');
+                        localStorage.removeItem("cart");
+
+                        location.reload();
+                        
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

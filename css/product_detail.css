@@ -1,0 +1,43 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.col-md-4 > img
+{
+    height: 300px;
+    width: 300px; 
+}
+
+.product-title--logo
+{
+    height: 30px;
+    width: 30px;
+}
+
+.product-order--icon > button
+{
+    border-radius: 1000px;
+}
+
+.btn:hover
+{
+    color: darkred;
+    background-color: aliceblue;
+}
+#product-detail {
+    border-radius: 20px;
+    padding: 30px;
+  
+}
+#product-detail img {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+#product-detail img:hover {
+    outline: 1px red solid;
+    transform: scale(1.05); 
+}

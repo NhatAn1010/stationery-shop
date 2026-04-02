@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G5 STATIONERY SHOP</title>
+    <link rel="shortcut icon" href="../img/icon/icon_web.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="../js/renderProduct.js" defer></script>
+</head>
+<body>
+    <div id="wrapper" class="container p-0">
+        <header class="position-sticky top-0 d-flex align-items-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-8 col-md-2 d-flex align-items-center header__left">
+                        <div class="header__left-logo d-flex justify-content-center align-items-center">
+                            <img class="w-75 h-100" src="../img/banner/logo.png">
+                            <div class="header__left-logo-title w-50">
+                                <h1 class="text-success fw-bold">STATIONERY</h1>
+                                <h1 class="d-flex justify-content-center text-danger">SHOP</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-md-7 d-flex justify-content-center align-items-center header__right">
+                        <div class="px-2 px-md-3">
+                            <a href="home.html"><i class="bi bi-house fs-1"></i></a>
+                        </div>
+                        <div class="px-2 px-md-3">
+                            <a href="cart.html"><i class="bi bi-cart fs-1"></i></a>
+                        </div>
+                        <div class="px-2 px-md-3">
+                            <a href="../index.html"><i class="bi bi-person-circle fs-1"></i></a>
+                        </div>
+                        <div class="menu px-2 px-md-3">
+                            <nav class="navbar p-0">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="category-list nav-link dropdown-toggle fs-4 d-none d-md-block" data-bs-toggle="dropdown" href="#">
+                                            Danh sách loại sản phẩm
+                                        </a>
+                                        <a class="d-md-none text-dark" data-bs-toggle="dropdown" href="#">
+                                            <i class="bi bi-list fs-1"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end position-absolute">
+                                            <li><a href="penshop.html" class="dropdown-item fs-4">Bút bi và bút máy</a></li>
+                                            <li><a href="bagshop.html" class="dropdown-item fs-4">Cặp dành cho học sinh</a></li>                       
+                                            <li><a href="officeshop.html" class="dropdown-item fs-4">Dụng cụ văn phòng</a></li>
+                                            <li><a href="gluetapeshop.html" class="dropdown-item fs-4">Hồ dán và băng keo</a></li>
+                                            <li><a href="notebooks.html" class="dropdown-item fs-4">Sổ và tài liệu</a></li>
+                                            <li><a href="art.html" class="dropdown-item fs-4">Mỹ thuật</a></li>
+                                        </ul>
+                                    </li>             
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-12 col-md-3">
+                        <div class="d-flex w-100">
+                            <input type="text" name="search-product" id="search-product" class="form-control" placeholder="Tìm kiếm...">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+
+        <div class="container mt-5">
+            <h2 class="d-flex justify-content-center">🛒 Giỏ hàng của bạn</h2>
+            <div id="cart-list" class="card shadow p-3"></div>
+            <div class="check-out d-flex justify-content-center">
+                <button id="cart-buy" class="btn btn-success mt-3 d-flex w-25 justify-content-center align-items-center">
+                    <h3>
+                        Thanh toán
+                    </h3>
+                </button>
+            </div>      
+        </div>
+
+        <!-- JS giỏ hàng -->
+        <script src="../js/cart.js"></script>
+        <script src="../js/cartPage.js"></script>
+        <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+            <div class="container text-center text-md-start">
+                <div class="row text-center text-md-start">
+                    
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">G5 STATIONERY</h5>
+                        <p>Địa chỉ tin cậy cho học sinh, sinh viên sắm sửa phụ kiện và đồ dùng học tập trend nhất.</p>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">Chính sách</h5>
+                        <p><a href="#" class="text-white text-decoration-none">Giao hàng</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Đổi trả 7 ngày</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Bảo mật</a></p>
+                    </div>
+
+                    <div class="col-md-3 col-lg-2 col-xl-2 mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">Liên kết</h5>
+                        <p><a href="#" class="text-white text-decoration-none">Trang chủ</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Sản phẩm</a></p>
+                        <p><a href="#" class="text-white text-decoration-none">Giỏ hàng</a></p>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 fw-bold text-warning">Liên hệ</h5>
+                        <p><i class="fas fa-home mr-3"></i> Nguyễn Văn Bảo, Gò Vấp, TP. Hồ Chí Minh</p>
+                        <p><i class="fas fa-envelope mr-3"></i> student.iuh.edu@gmail.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> 0908441812</p>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <div class="row align-items-center">
+                    <div class="col-md-7 col-lg-8">
+                        <p>Copyright © 2026 All rights reserved by:
+                            <a href="#" class="text-warning text-decoration-none"><strong>G5 Group</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+    

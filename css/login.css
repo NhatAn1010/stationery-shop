@@ -1,0 +1,170 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; 
+}
+
+
+.auth-container {
+    background: white;
+    width: 400px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+}
+
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffffff;
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    /* color: #000; */
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    color: green;
+}
+
+.tab-btn:hover {
+    color: #333;
+}
+
+
+.auth-form {
+    display: none; 
+    animation: fadeIn 0.4s ease-in-out; 
+}
+
+.auth-form.active {
+    display: block; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* .input-group {
+    margin-bottom: 15px;
+} */
+
+.text-pass
+{
+    margin-bottom: 20px;
+}
+
+.email,
+.full-name,
+.pass1
+{
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.forgot-pass {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.forgot-pass a {
+    font-size: 13px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-pass a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #333;
+}
+
+.submit-btn a
+{
+    text-decoration: none;
+    color: white;
+}
+
+#eye1 {
+    cursor: pointer;
+    transition: 0.3s ease;
+    color: #555; 
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#eye2 {
+    cursor: pointer;
+    transition: 0.3s ease;
+    color: #555; 
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
