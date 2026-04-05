@@ -22,6 +22,14 @@
     border-radius: 1000px;
 }
 
+
+
+.product-related img
+{
+    height: 200px;
+    width: 200px;
+}
+
 .btn:hover
 {
     color: darkred;
@@ -39,5 +47,5 @@
 
 #product-detail img:hover {
     outline: 1px red solid;
-    transform: scale(1.05); 
+    transform: scale(1.02); 
 }

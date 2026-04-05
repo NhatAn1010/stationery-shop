@@ -1,17 +1,78 @@
-function renderProductDetail(p) {
+function getRandomProduct(products, currentProduct)
+{
+    
+    let filterdProducts = products.filter(p => p.id !== currentProduct.id);
+    const lengthProducts = filterdProducts.length;
+
+    
+    for(let i = lengthProducts - 1;i >= 1;i--)
+    {
+        let randomIndex = Math.floor(Math.random() * (i + 1));
+        const j = randomIndex;
+        [filterdProducts[i], filterdProducts[j]] = [filterdProducts[j], filterdProducts[i]];
+    }
+
+    return filterdProducts.slice(0, 4);
+}
+
+function renderRandomProduct(products, currentProduct) {
+    
+    const randomProducts = getRandomProduct(products, currentProduct);
+    let html = '';
+    randomProducts.forEach(p => {
+        html += `
+            <div class="col-6 col-md-3 col-lg-3 mb-4">
+                <div id="product-item--outline" class="product card">
+                    <div class="card-body">
+                        <div class="card-head mb-1 d-flex justify-content-center">
+                            <img src="${p.image}" alt="" class="w-100 h-100">
+                        </div>
+
+                        <div class="product-title mb-4">
+                            <a href="#"> 
+                                ${p.name}
+                            </a>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="text-danger">
+                                ${p.price.toLocaleString('vi-VN')}đ
+                            </div>
+                            <div class="sold fw-bold">
+                                Đã bán ${p.sold}
+                            </div>
+                        </div>
+
+                        <div class="price-sold d-flex justify-content-center">
+                            <a href="./product_detail.html?id=${p.id}&cat=${p.category}" class="btn btn-primary">
+                                <i class="bi bi-eye"></i>
+                                Xem chi tiết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+    });
+
+    document.getElementById('product-related').innerHTML = html;
+}
+
+
+function renderProductDetail(products, currentProduct) {
     let html = "";
 
     html += `
             <div class="card-body h-100">
                 <div class="row">
                     <div class="col-md-4 col-12">
-                        <img src="${p.image}" class="img-fluid">
+                        <img src="${currentProduct.image}" class="img-fluid">
                     </div>
                     <div class="col-md-8 col-12">
                         <div class="product-title d-flex pb-3">
                             <img src="../img/icon/icon_web.png" class="product-title--logo img-fluid">
                             <h4 class="ms-2">
-                                ${p.name}
+                                ${currentProduct.name}
                             </h4>
                         </div>
 
@@ -25,21 +86,21 @@ function renderProductDetail(p) {
                                 <i class="bi bi-star-fill text-warning"></i>
                             </div>
                             <div class="product-rating--vote border-start ps-2 pe-2">
-                                <span>${p.vote}</span> đánh giá
+                                <span>${currentProduct.vote}</span> đánh giá
                             </div>
                             <div class="product-rating--sold border-start ps-2">
-                                ${p.sold} đã bán
+                                ${currentProduct.sold} đã bán
                             </div>
                         </div>
 
                         <div class="product-price pb-3 d-flex">
                             <h5 class="fw-bold text-success ">
-                                ${p.price.toLocaleString('vi-VN')}đ
+                                ${currentProduct.price.toLocaleString('vi-VN')}đ
                             </h5>
 
                             <span class="ms-5 fw-bold">
-                                <del class="text-danger">${p.originalPrice.toLocaleString('vi-VN')}đ</del>
-                                ${(p.discount * 100).toFixed(0)}% off
+                                <del class="text-danger">${currentProduct.originalPrice.toLocaleString('vi-VN')}đ</del>
+                                ${(currentProduct.discount * 100).toFixed(0)}% off
                             </span>
                         </div>
 
@@ -54,7 +115,7 @@ function renderProductDetail(p) {
 
                         <div class="description">
                             <h5>
-                                Mô tả: ${p.description}
+                                Mô tả: ${currentProduct.description}
                             </h5>
                         </div>
 
@@ -63,19 +124,19 @@ function renderProductDetail(p) {
                                 <button id="add-cart" class="btn btn-danger rounded-pill w-100 h-100"
                                     onclick=''>
                                     <i class="bi bi-cart fs-3"></i>
-                                    <span class="fw-bold fs-3 mx-3">Thêm vào giỏ hàng</span>
+                                    <span class="fw-bold fs-3">Thêm vào giỏ</span>
                                 </button>
                             </div>
                             
-
-
-                            <div class="col-12 col-md-6 mx-1 my-3">
+                                
+                            <div class="col-12 col-md-6 mx-1 my-3">    
                                 <button class="btn btn-danger rounded-pill w-100 h-100" id="buy-now">
-                                    <span class="fw-bold fs-3 mx-3">Mua ngay</span>
+                                    <i class="bi bi-cart fs-3"></i>
+                                    <span class="fw-bold fs-3">Mua ngay</span>
                                 </button>
-                            </div>       
+                            </div>
                         </div>
-                        <p id="note"></p>
+                        <p id="note"></p>   
                     </div>
                 </div>
             </div>
@@ -86,7 +147,7 @@ function renderProductDetail(p) {
 
     document.getElementById('add-cart').addEventListener('click', () => {
         const quantity = parseInt(document.getElementById("product-value").value);
-        addToCart(p, quantity); 
+        addToCart(currentProduct, quantity);
     });
 
     const note = document.getElementById('note');
@@ -99,7 +160,9 @@ function renderProductDetail(p) {
     })
 
     document.getElementById("buy-now").addEventListener("click", () => {
-        window.location.href = "checkout.html";
+        const quantity = parseInt(document.getElementById("product-value").value);
+        addToCart(currentProduct, quantity); 
+        window.location.href = "checkout.html"; 
     });
 
     
@@ -119,7 +182,10 @@ function renderProductDetail(p) {
             alert("số lượng không được nhỏ hơn 1");
         }
     });
+
+    renderRandomProduct(products, currentProduct);
 }
+
 
 const params = new URLSearchParams(window.location.search);
 const findId = params.get("id");
@@ -130,6 +196,9 @@ fetch(`../data/${category}-product.json`)
 .then(
     data => {
         const currentProduct = data.find(p => p.id === findId);
-        if (currentProduct) renderProductDetail(currentProduct);
+        if (currentProduct)
+        {
+            renderProductDetail(data, currentProduct);
+        }
     }
 )

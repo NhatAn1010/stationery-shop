@@ -112,6 +112,7 @@ header
     outline: 1px red solid;
     transform: scale(1.02);
     overflow: hidden;
+    box-shadow: 4px 4px 4px green;
 }
 
 .btn:hover
@@ -176,6 +177,12 @@ header
 .sold
 {
     color:  #28a745;
+}
+
+.product-number--icon
+{
+    position: absolute;
+    right: 10px;
 }
 
 

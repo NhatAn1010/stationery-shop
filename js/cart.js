@@ -5,7 +5,8 @@ function getCart() {
 function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
-function addToCart(product, quantity = 1) {
+function addToCart(product, quantity = 1) 
+{
     let cart = getCart();
     const index = cart.findIndex(item => item.id === product.id);
     if (index !== -1) {
@@ -20,6 +21,7 @@ function addToCart(product, quantity = 1) {
         });
     }
     saveCart(cart);
+    updateNumberProductIcon();
 }
 
 
@@ -40,8 +42,23 @@ function updateQuantity(productId, quantity) {
     }
 }
 
+function updateNumberProductIcon()
+{
+    let cart = getCart();
+    let totalNumberProduct = cart.reduce((total, item) => total + item.quantity, 0);
+    if(totalNumberProduct >= 1) document.querySelector('#number-icon').innerText = totalNumberProduct;
+    saveCart(cart);
+}
+
+
 // expose ra window
 window.addToCart = addToCart;
 window.getCart = getCart;
 window.removeFromCart = removeFromCart;
 window.updateQuantity = updateQuantity;
+window.updateNumberProductIcon = updateNumberProductIcon;
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    updateNumberProductIcon();
+});
