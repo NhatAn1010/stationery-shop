@@ -112,7 +112,6 @@ header
     outline: 1px red solid;
     transform: scale(1.02);
     overflow: hidden;
-    box-shadow: 4px 4px 4px green;
 }
 
 .btn:hover
